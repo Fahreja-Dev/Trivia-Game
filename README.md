@@ -10,6 +10,7 @@ Fitur yang tersedia pada Trivia-Game
 | Fitur                 |Tersedia          |
 | ----------------------|------------------|
 | Audio                 |:white_check_mark:|
+| Audio Repeat Mode     |:white_check_mark:|
 | Duration Question     |:white_check_mark:|
 
 ## Tampilan Web
