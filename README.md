@@ -11,3 +11,6 @@ Fitur yang tersedia pada Trivia-Game
 | ----------------------|------------------|
 | Audio                 |:white_check_mark:|
 | Duration Question     |:white_check_mark:|
+
+## Tampilan Web
+![alt text](https://github.com/Fahreja-Dev/Trivia-Game/blob/main/Contoh-Tampilan-Trivia-Game.gif?raw=true "Tampilan Web Trivia Game")
