@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trivia Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/typeit@8.8.7/dist/index.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="loading-screen"></div>
+
+      <div class="container-loading">
+        <div class="loading-text">
+          <span>L</span>
+          <span>O</span>
+          <span>A</span>
+          <span>D</span>
+          <span>I</span>
+          <span>N</span>
+          <span>G</span>
+        </div>
+        <div class="loading">
+          <div class="bar">
+            <a>0%</a>
+            <div class="shimmer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-weather hidden">
+        <div>
+          <div class="cloud1">
+            <img
+              class="cloud cloud1 component"
+              alt="Cloud"
+              data-load="./image/cloud.png"
+            />
+            <img
+              class="cloud cloud2 component"
+              alt="Cloud"
+              data-load="./image/cloud.png"
+            />
+          </div>
+          <div class="cloud2">
+            <img class="sun component" alt="Sun" data-load="./image/sun.png" />
+            <img
+              class="cloud cloud1 component"
+              alt="Cloud"
+              data-load="./image/cloud.png"
+            />
+            <img
+              class="cloud cloud2 component"
+              alt="Cloud"
+              data-load="./image/cloud.png"
+            />
+            <img
+              class="cloud cloud3 component"
+              alt="Cloud"
+              data-load="./image/cloud.png"
+            />
+          </div>
+          <div class="cloud3">
+            <img
+              class="cloud cloud1 component"
+              alt="Cloud"
+              data-load="./image/cloud.png"
+            />
+            <img
+              class="cloud cloud2 component"
+              alt="Cloud"
+              data-load="./image/cloud.png"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="container-menu flex">
+        <ul>
+          <li class="start hidden" onclick="startGame()">START GAME</li>
+          <li class="options hidden" onclick="optionsGame()">OPTIONS</li>
+          <li class="about hidden" onclick="aboutGame()">ABOUT</li>
+        </ul>
+      </div>
+
+      <div class="black-screen hidden" onclick="closeScreen()"></div>
+
+      <div class="container-options hidden">
+        <div class="back">
+          <div class="back-options">
+            <span><</span>
+            <p>BACK</p>
+          </div>
+        </div>
+
+        <div class="menu-options">
+          <nav>
+            <ul>
+              <li id="option1" class="active-option">
+                <a>Audio</a>
+                <div class="active"></div>
+              </li>
+              <li id="option2">
+                <a>Quest</a>
+                <div></div>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="content-options">
+            <div data-id="option1" class="audio-options">
+              <div class="audio-container">
+                <div class="child-audio1">
+                  <div class="title-audio-music">
+                    <a>Music Volume</a>
+                  </div>
+                </div>
+
+                <div class="child-audio2">
+                  <div class="icon-volume">
+                    <i class="fa-solid fa-volume-high"></i>
+                  </div>
+                  <div class="container-range">
+                    <input type="range" id="range-option" min="0" max="100" />
+                  </div>
+                  <div
+                    class="button-play-option"
+                    onclick="buttonPlayAudio()"
+                    data-play="false"
+                  >
+                    <div class="triangle"></div>
+                    <div class="pause hidden">
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="child-audio3">
+                  <div class="title-auto-play">
+                    <a>Repeat Mode</a>
+                  </div>
+                  <div onclick="audioRepeat()" class="container-repeat">
+                    <input type="checkbox" class="button-repeat" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div data-id="option2" class="audio-options hidden">
+              <div class="quest-container">
+                <div class="child-quest1">
+                  <div class="title-duration-quest">
+                    <a>Duration Quest</a>
+                  </div>
+                </div>
+                <div class="child-quest2">
+                  <div class="container-range">
+                    <input
+                      type="range"
+                      id="range-duration-quest"
+                      min="20"
+                      max="100"
+                    />
+                  </div>
+
+                  <div class="total-duration-quest">
+                    <a>00:00:00</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-about hidden">
+        <div class="back">
+          <div class="back-about">
+            <span><</span>
+            <p>BACK</p>
+          </div>
+        </div>
+        <div class="text-about">
+          <p id="textType"></p>
+        </div>
+      </div>
+
+      <div class="container-question hidden">
+        <div class="information hidden">
+          <div class="number-question">
+            <p></p>
+          </div>
+
+          <div class="time">
+            <div class="time-icon">
+              <i class="fa-solid fa-stopwatch"></i>
+            </div>
+            <div class="remaining-time">00:00:00</div>
+            <div class="container-bar">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="question">
+            <h2 id="question"></h2>
+          </div>
+
+          <div id="choices">
+            <button id="choice1" onclick="checkAnswer(this)"></button>
+            <button id="choice2" onclick="checkAnswer(this)"></button>
+            <button id="choice3" onclick="checkAnswer(this)"></button>
+            <button id="choice4" onclick="checkAnswer(this)"></button>
+          </div>
+
+          <div id="result"></div>
+        </div>
+      </div>
+
+      <div class="container-mount">
+        <div
+          class="mount-small hidden component"
+          data-load="image/mount-small.png"
+        ></div>
+        <div
+          class="mount-medium hidden component"
+          data-load="image/mount-medium.png"
+        ></div>
+      </div>
+    </main>
+
+    <audio
+      class="component"
+      id="audio"
+      preload="auto"
+      data-load="./audio/The-Ballad-of-Robin-Hood.mp3"
+    ></audio>
+  </body>
+</html>
